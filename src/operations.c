@@ -12,15 +12,17 @@
 
 #include "push_swap.h"
 
-int 	push(t_ivec *dst, t_ivec *src)
+int 	push(t_ivec *dst, t_ivec *src, char *action)
 {
 	if (!dst || !src)
 		return (0);
 	ft_int_vec_pushfront(dst, ft_int_vec_popfront(src));
+	if (action)
+		ft_printf("%s\n", action);
 	return (1);
 }
 
-int 	swap(t_ivec *stack)
+int 	swap(t_ivec *stack, char *action)
 {
 	int temp;
 
@@ -31,10 +33,12 @@ int 	swap(t_ivec *stack)
 	temp = stack->data[0];
 	stack->data[0] = stack->data[1];
 	stack->data[1] = temp;
+	if (action)
+		ft_printf("%s\n", action);
 	return (1);
 }
 
-int 	rotate_up(t_ivec *stack)
+int 	rotate_up(t_ivec *stack, char *action)
 {
 	int 	temp;
 
@@ -44,11 +48,13 @@ int 	rotate_up(t_ivec *stack)
 		return (0);
 	temp = stack->data[0];
 	ft_memmove(stack->data, stack->data + 1, sizeof(int) * stack->length);
-	stack->data[stack->length - 1 ] = temp;
+	stack->data[stack->length - 1] = temp;
+	if (action)
+		ft_printf("%s\n", action);
 	return (0);
 }
 
-int 	rotate_down(t_ivec *stack)
+int 	rotate_down(t_ivec *stack, char *action)
 {
 	int 	temp;
 
@@ -57,7 +63,9 @@ int 	rotate_down(t_ivec *stack)
 	if (stack->length < 2)
 		return (0);
 	temp = stack->data[stack->length - 1];
-	ft_memmove(stack->data + 1, stack->data, sizeof(int) * (stack->length - 1);
+	ft_memmove(stack->data + 1, stack->data, sizeof(int) * (stack->length - 1));
 	stack->data[0] = temp;
+	if (action)
+		ft_printf("%s\n", action);
 	return (1);
 }
