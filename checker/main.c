@@ -33,8 +33,16 @@ int		main(int argc, char **argv)
 	if (argc > 1)
 	{
 		check_integers(argc, argv);
-
-
+		a = create_stack(argc, argv);
+		if (!(b = ft_int_vec_init()))
+		{
+			ft_int_vec_del(&a);
+			finish_him(MALLOC_ERROR);
+		}
+		get_input(&a, &b);
+		check_order(a, b) ? ft_printf("OK\n") : ft_printf("KO\n");
+		ft_int_vec_del(&a);
+		ft_int_vec_del(&b);
 	}
 	return (0);
 }

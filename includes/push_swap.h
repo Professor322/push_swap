@@ -17,10 +17,26 @@
 
 # define FALSE 		 0
 # define TRUE		 1
+# define DEBUG       1
 # define MALLOC_ERROR 2
 # define INPUT_ERROR  3
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
+
+typedef enum	e_operations
+{
+	SWAP_A,
+	SWAP_B,
+	SWAP_BOTH,
+	PUSH_A,
+	PUSH_B,
+	ROTATE_A_UP,
+	ROTATE_B_UP,
+	ROTATE_BOTH_UP,
+	ROTATE_A_DOWN,
+	ROTATE_B_DOWN,
+	ROTATE_BOTH_DOWN,
+}				t_operations;
 
 /**
  * operations
@@ -35,5 +51,23 @@ int 	rotate_down(t_ivec *stack, char *action);
 void	finish_him(int t_error);
 long	ft_atoi_move(char **src);
 void	check_integers(int argc, char **argv);
+t_ivec	*create_stack(int argc, char **argv);
+
+void	rotate_elems(t_ivec *a, t_ivec *b, int stack_to_rotate);
+void	swap_stack_elems(t_ivec *a, t_ivec *b, int stack_to_swap);
+void	push_on_stack(t_ivec **a, t_ivec **b, int stack_to_push);
+
+/**
+ * 	apply and debug
+ */
+void	swaps(t_ivec *a, t_ivec *b, int command_num);
+void	pushes(t_ivec **a, t_ivec **b, int command_num);
+void	rotations_up(t_ivec *a, t_ivec *b, int command_num);
+void	rotations_down(t_ivec *a, t_ivec *b, int command_num);
+
+void	get_input(t_ivec **a, t_ivec **b);
+void	print_stack(t_ivec *a, t_ivec *b);
+int 	check_order(t_ivec *a, t_ivec *b);
+
 
 #endif

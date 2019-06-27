@@ -14,9 +14,12 @@
 
 int 	push(t_ivec *dst, t_ivec *src, char *action)
 {
-	if (!dst || !src)
+	if (!src || !dst)
+		return (-1);
+	if (!src->length)
+		return (1);
+	if (!(ft_int_vec_pushfront(dst, ft_int_vec_popfront(src))))
 		return (0);
-	ft_int_vec_pushfront(dst, ft_int_vec_popfront(src));
 	if (action)
 		ft_printf("%s\n", action);
 	return (1);

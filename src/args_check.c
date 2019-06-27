@@ -25,10 +25,9 @@ static int 	search_through(t_ivec *vec, int value)
 	return (0);
 }
 
-static void check_new_value(t_ivec **vec, char **temp)
+static void check_new_value(t_ivec **vec, char **temp, char **save_ptr)
 {
 	long		value;
-	const char	**save_ptr = (const char**)temp;
 
 	while (**temp)
 	{
@@ -48,6 +47,7 @@ void	check_integers(int argc, char **argv)
 {
 	int		 i;
 	char	*temp;
+	char	*save_ptr;
 	t_ivec	*vec;
 
 	if (!(vec = ft_int_vec_init()))
@@ -63,20 +63,8 @@ void	check_integers(int argc, char **argv)
 			ft_memdel((void**)&vec);
 			finish_him(MALLOC_ERROR);
 		}
-		check_new_value(&vec, &temp);
-	/*	save_ptr = temp;
-		while (*temp)
-		{
-			value = ft_atoi_move(&temp);
-			if (value > INT_MAX || value < INT_MIN || search_through(vec, value))
-			{
-				ft_memdel((void**)&vec);
-				ft_memdel((void**)&save_ptr);
-				finish_him(INPUT_ERROR);
-			}
-			ft_int_vec_pushback(vec, value);
-		}
-		ft_memdel((void**)&save_ptr);*/
+		save_ptr = temp;
+		check_new_value(&vec, &temp, &save_ptr);
 	}
 	ft_int_vec_del(&vec);
 }

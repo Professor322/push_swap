@@ -110,8 +110,8 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 t_ivec				*ft_int_vec_init(void);
-void				ft_int_vec_pushback(t_ivec *vec, int value);
-void				ft_int_vec_pushfront(t_ivec *vec, int value);
+int					ft_int_vec_pushback(t_ivec *vec, int value);
+int					ft_int_vec_pushfront(t_ivec *vec, int value);
 int 				ft_int_vec_enlarge(t_ivec *vec);
 void				ft_int_vec_del(t_ivec **vec);
 int					ft_int_vec_popfront(t_ivec *vec);
