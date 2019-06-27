@@ -114,6 +114,7 @@ void				ft_int_vec_pushback(t_ivec *vec, int value);
 void				ft_int_vec_pushfront(t_ivec *vec, int value);
 int 				ft_int_vec_enlarge(t_ivec *vec);
 void				ft_int_vec_del(t_ivec **vec);
+int					ft_int_vec_popfront(t_ivec *vec);
 
 t_vec				*ft_ptr_vec_init(void);
 int					ft_ptr_vec_enlarge(t_vec *vec);

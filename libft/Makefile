@@ -83,6 +83,7 @@ RESOURCES = $(addprefix ./str_funcs/, ft_putchar.c \
 	int_vec/ft_int_vec_pushfront.c \
 	int_vec/ft_ivec_init.c \
 	int_vec/ft_int_vec_del.c \
+	int_vec/ft_int_vec_popfront.c \
 	ptr_vec/ft_ptr_vec_enlarge.c \
 	ptr_vec/ft_ptr_vec_init.c \
 	ptr_vec/ft_ptr_vec_pushback.c \

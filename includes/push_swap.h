@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ivec_init.c                                     :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlegros <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/18 13:04:28 by vlegros           #+#    #+#             */
-/*   Updated: 2019/05/18 13:04:28 by vlegros          ###   ########.fr       */
+/*   Created: 2019/06/27 15:24:27 by vlegros           #+#    #+#             */
+/*   Updated: 2019/06/27 15:24:27 by vlegros          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-t_ivec	*ft_int_vec_init(void)
-{
-	t_ivec *vec;
+#include "../libft/includes/libft.h"
 
-	vec = (t_ivec*)malloc(sizeof(t_ivec));
-	if (vec)
-	{
-		if (!(vec->data = (int*)malloc(sizeof(int) * START_CAP)))
-		{
-			ft_memdel((void**)&vec);
-			return (NULL);
-		}
-		vec->capacity = START_CAP;
-		vec->length = 0;
-	}
-	return (vec);
-}
+int 	push(t_ivec *src, t_ivec *dst);
+int 	swap(t_ivec *stack);
+int 	rotate_up(t_ivec *stack);
+int 	rotate_up(t_ivec *stack);
+
+#endif
