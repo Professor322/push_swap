@@ -18,7 +18,7 @@ void	push_on_stack(t_ivec **a, t_ivec **b, int stack_to_push)
 		return ;
 	if (stack_to_push == PUSH_A)
 	{
-		if(!push(*a, *b, NULL))
+		if(!push(*a, *b, DO_OP, NULL))
 		{
 			ft_int_vec_del(a);
 			ft_int_vec_del(b);
@@ -27,7 +27,7 @@ void	push_on_stack(t_ivec **a, t_ivec **b, int stack_to_push)
 	}
 	else if (stack_to_push == PUSH_B)
 	{
-		if (!push(*b, *a, NULL))
+		if (!push(*b, *a, DO_OP, NULL))
 		{
 			ft_int_vec_del(a);
 			ft_int_vec_del(b);

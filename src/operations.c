@@ -12,14 +12,15 @@
 
 #include "push_swap.h"
 
-int 	push(t_ivec *dst, t_ivec *src, char *action)
+int 	push(t_ivec *dst, t_ivec *src, int flag, char *action)
 {
 	if (!src || !dst)
 		return (-1);
 	if (!src->length)
-		return (1);
-	if (!(ft_int_vec_pushfront(dst, ft_int_vec_popfront(src))))
-		return (0);
+		return (-1);
+	if (flag == DO_OP)
+		if (!(ft_int_vec_pushfront(dst, ft_int_vec_popfront(src))))
+			return (0);
 	if (action)
 		ft_printf("%s\n", action);
 	return (1);

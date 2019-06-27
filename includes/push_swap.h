@@ -15,13 +15,19 @@
 
 # include "../libft/includes/libft.h"
 
-# define FALSE 		 0
-# define TRUE		 1
 # define DEBUG       1
 # define MALLOC_ERROR 2
 # define INPUT_ERROR  3
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
+
+typedef enum	e_flags
+{
+	ANALYSIS,
+	DO_OP,
+	VALUE,
+	INDEX,
+}				t_flags;
 
 typedef enum	e_operations
 {
@@ -41,7 +47,7 @@ typedef enum	e_operations
 /**
  * operations
  */
-int 	push(t_ivec *src, t_ivec *dst, char *action);
+int 	push(t_ivec *dst, t_ivec *src, int flag,char *action);
 int 	swap(t_ivec *stack, char *action);
 int 	rotate_up(t_ivec *stack, char *action);
 int 	rotate_down(t_ivec *stack, char *action);
@@ -68,6 +74,14 @@ void	rotations_down(t_ivec *a, t_ivec *b, int command_num);
 void	get_input(t_ivec **a, t_ivec **b);
 void	print_stack(t_ivec *a, t_ivec *b);
 int 	check_order(t_ivec *a, t_ivec *b);
+
+int 	find_max(t_ivec *stack, int flag);
+int 	find_min(t_ivec *stack, int flag);
+int 	find_index(t_ivec *stack, int value);
+int 	smart_rotations(t_ivec *stack, char c, int elem, int output_flag);
+size_t 	calculate_and_place(t_ivec *a, t_ivec *b, int elem, int flag);
+void	merge(t_ivec *a, t_ivec *b);
+void	sort(t_ivec **a, t_ivec **b);
 
 
 #endif
