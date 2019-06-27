@@ -13,6 +13,8 @@
 FLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 RESOURCES = $(addprefix ./str_funcs/, ft_putchar.c \
+    ft_atoi_base.c \
+    ft_atoi.c \
 	ft_putchar_fd.c \
 	ft_putendl.c \
 	ft_putendl_fd.c \
@@ -46,9 +48,7 @@ RESOURCES = $(addprefix ./str_funcs/, ft_putchar.c \
 	ft_strstr.c \
 	ft_strsub.c \
 	ft_strtrim.c ) \
-	$(addprefix ./char_funcs/, ft_atoi.c \
-	ft_atoi_base.c \
-	ft_isalnum.c \
+	$(addprefix ./char_funcs/, ft_isalnum.c \
 	ft_isalpha.c \
 	ft_isascii.c \
 	ft_isdigit.c \
@@ -57,7 +57,7 @@ RESOURCES = $(addprefix ./str_funcs/, ft_putchar.c \
 	ft_toupper.c \
 	ft_isspace.c ) \
 	$(addprefix ./digit_funcs/, ft_itoa.c \
-	ft_itoa.c) \
+	ft_abs.c) \
 	$(addprefix ./lst_funcs/, ft_lst_addback.c \
 	ft_lstadd.c \
 	ft_lstdel.c \
