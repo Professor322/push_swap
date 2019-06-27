@@ -21,11 +21,9 @@ size_t 	calculate_and_place(t_ivec *a, t_ivec *b, int elem, int flag)
 
 	max = find_max(a, VALUE);
 	min = find_min(a, VALUE);
-	actions = smart_rotations(b, 'b', find_index(b, elem), flag);
+	actions = 0;
 	if (elem < min || elem > max)
-	{
-		actions += smart_rotations(a, 'a', find_index(a, min), flag);
-	}
+		actions = rotate_analysis(a, b,find_index(a, min), find_index(b, elem), flag);
 	else
 	{
 		i = -1;
@@ -33,14 +31,13 @@ size_t 	calculate_and_place(t_ivec *a, t_ivec *b, int elem, int flag)
 		{
 			if (elem > a->data[i] && elem < a->data[i + 1])
 			{
-				actions += smart_rotations(a, 'a', i + 1, flag);
+				actions = rotate_analysis(a, b, i + 1, find_index(b, elem),
+						flag);
 				break;
 			}
-			/*if ((size_t)i + 2 == a->length)
-			{
-				if (elem > a->data[i] && elem < a->data[0])
-					actions += smart_rotations(a, 'a', 0, ANALYSIS);
-			}*/
+			if ((size_t)i + 2 == a->length)
+				if(elem > a->data[i + 1] && elem < a->data[0])
+					actions = rotate_analysis(a, b, 0, find_index(b, elem), flag);
 		}
 	}
 	if (!(push(a, b, flag, flag == ANALYSIS ? NULL : "pa")))

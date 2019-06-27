@@ -82,6 +82,7 @@ int 	smart_rotations(t_ivec *stack, char c, int elem, int output_flag);
 size_t 	calculate_and_place(t_ivec *a, t_ivec *b, int elem, int flag);
 void	merge(t_ivec *a, t_ivec *b);
 void	sort(t_ivec **a, t_ivec **b);
+size_t	rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet);
 
 
 #endif
