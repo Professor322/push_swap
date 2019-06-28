@@ -27,6 +27,8 @@ typedef enum	e_flags
 	DO_OP,
 	VALUE,
 	INDEX,
+	FINAL,
+	A_ONLY
 }				t_flags;
 
 typedef enum	e_operations
@@ -73,14 +75,14 @@ void	rotations_down(t_ivec *a, t_ivec *b, int command_num);
 
 void	get_input(t_ivec **a, t_ivec **b);
 void	print_stack(t_ivec *a, t_ivec *b);
-int 	check_order(t_ivec *a, t_ivec *b);
+int 	check_order(t_ivec *a, t_ivec *b, int flag);
 
 int 	find_max(t_ivec *stack, int flag);
 int 	find_min(t_ivec *stack, int flag);
 int 	find_index(t_ivec *stack, int value);
 int 	smart_rotations(t_ivec *stack, char c, int elem, int output_flag);
-size_t 	calculate_and_place(t_ivec *a, t_ivec *b, int elem, int flag);
-void	merge(t_ivec *a, t_ivec *b);
+size_t 	calculate_and_place(t_ivec **a, t_ivec **b, int elem, int flag);
+void	merge(t_ivec **a, t_ivec **b);
 void	sort(t_ivec **a, t_ivec **b);
 size_t	rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet);
 

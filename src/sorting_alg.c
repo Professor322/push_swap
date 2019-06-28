@@ -27,11 +27,31 @@ static void 	sort_the_remainder(t_ivec *a)
 		swap(a, "sa");
 }
 
+static void		small_stack_sort(t_ivec *a)
+{
+	if (a->length == 2)
+	{
+		if (a->data[0] > a->data[1])
+			swap(a, "sa");
+	}
+	else if (a->length == 3)
+		sort_the_remainder(a);
+}
 
 void	sort(t_ivec **a, t_ivec **b)
 {
-	while ((*a)->length > 3)
-		push(*b, *a, DO_OP,"pb");
-	sort_the_remainder(*a);
-	merge(*a, *b);
+	if ((*a)->length <= 3)
+		small_stack_sort(*a);
+	else if (!check_order(*a, *b, FINAL))
+	{
+		while ((*a)->length > 3)
+		{
+			if (check_order(*a, *b, A_ONLY))
+				break;
+			push(*b, *a, DO_OP, "pb");
+		}
+		if ((*a)->length == 3)
+			sort_the_remainder(*a);
+		merge(a, b);
+	}
 }

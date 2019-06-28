@@ -12,12 +12,13 @@
 
 #include "push_swap.h"
 
-int 	check_order(t_ivec *a, t_ivec *b)
+int 	check_order(t_ivec *a, t_ivec *b, int flag)
 {
 	int i;
 
-	if (b->length)
-		return (0);
+	if (flag == FINAL)
+		if (b->length)
+			return (0);
 	i = -1;
 	while ((size_t)++i < a->length - 1)
 		if (a->data[i] > a->data[i + 1])

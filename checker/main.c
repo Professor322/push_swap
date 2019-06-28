@@ -27,7 +27,7 @@ int		main(int argc, char **argv)
 			finish_him(MALLOC_ERROR);
 		}
 		get_input(&a, &b);
-		check_order(a, b) ? ft_printf("OK\n") : ft_printf("KO\n");
+		check_order(a, b, FINAL) ? ft_printf("OK\n") : ft_printf("KO\n");
 		ft_int_vec_del(&a);
 		ft_int_vec_del(&b);
 	}
