@@ -14,12 +14,18 @@
 # define PUSH_SWAP_H
 
 # include "../libft/includes/libft.h"
+# include <mlx.h>
 
 # define DEBUG       1
 # define MALLOC_ERROR 2
 # define INPUT_ERROR  3
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
+
+typedef struct	s_mlx
+{
+
+}				t_mlx;
 
 typedef enum	e_flags
 {
