@@ -39,7 +39,6 @@ void	get_input(t_ivec **a, t_ivec **b)
 	int	command_num;
 
 	command = NULL;
-	ft_printf("before %s", command);
 	while (get_next_line(0, &command))
 	{
 		ft_printf("%s\n", command);
