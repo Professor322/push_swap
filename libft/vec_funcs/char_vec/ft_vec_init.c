@@ -23,6 +23,5 @@ t_vec	*ft_vec_init(size_t size)
 		else
 			temp->capacity = 0;
 	}
-	char *c = (char*)temp;
 	return (temp);
 }
