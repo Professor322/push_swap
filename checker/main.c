@@ -16,6 +16,7 @@ int		main(int argc, char **argv)
 {
 	t_ivec *a;
 	t_ivec *b;
+	t_mlx	mlx;
 
 	if (argc > 1)
 	{
@@ -26,6 +27,10 @@ int		main(int argc, char **argv)
 			ft_int_vec_del(&a);
 			finish_him(MALLOC_ERROR);
 		}
+		mlx.mlx_ptr = mlx_init();
+		mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1000, 1000, "chlen");
+		create_elem(&mlx, 15);
+		mlx_loop(mlx.mlx_ptr);
 		get_input(&a, &b);
 		check_order(a, b, FINAL) ? ft_printf("OK\n") : ft_printf("KO\n");
 		ft_int_vec_del(&a);

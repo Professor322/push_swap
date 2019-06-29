@@ -24,6 +24,11 @@
 
 typedef struct	s_mlx
 {
+	int 	width;
+	int 	height;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
 
 }				t_mlx;
 
@@ -91,6 +96,9 @@ size_t 	calculate_and_place(t_ivec **a, t_ivec **b, int elem, int flag);
 void	merge(t_ivec **a, t_ivec **b);
 void	sort(t_ivec **a, t_ivec **b);
 size_t	rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet);
-
+/**
+ * visualisation
+ */
+void	create_elem(t_mlx *param, int value);
 
 #endif
