@@ -118,7 +118,10 @@ int					ft_int_vec_popfront(t_ivec *vec);
 
 t_vec				*ft_ptr_vec_init(void);
 int					ft_ptr_vec_enlarge(t_vec *vec);
-void				ft_ptr_vec_pushback(t_vec *vec, void *value);
+int					ft_ptr_vec_pushback(t_vec *vec, void *value);
+int 				ft_ptr_vec_pushfront(t_vec *vec, void *value);
+void*				ft_ptr_vec_popfront(t_vec *vec);
+void				ft_ptr_vec_del(t_vec **vec, void (*del)(void**));
 
 t_vec   			*ft_vec_init(size_t size);
 int					ft_vec_enlarge(t_vec *vec);

@@ -32,6 +32,12 @@ typedef struct	s_mlx
 
 }				t_mlx;
 
+typedef struct	s_vis
+{
+	int		val;
+	void	*img;
+}				t_vis;
+
 typedef enum	e_flags
 {
 	ANALYSIS,
@@ -100,5 +106,7 @@ size_t	rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet);
  * visualisation
  */
 void	create_elem(t_mlx *param, int value);
+t_ivec	*rearrange_elems(t_ivec *stack);
+void	del(void **elem);
 
 #endif

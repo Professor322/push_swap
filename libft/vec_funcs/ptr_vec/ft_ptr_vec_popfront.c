@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ptr_vec_pushback.c                              :+:      :+:    :+:   */
+/*   ft_ptr_vec_popfront.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlegros <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/18 18:03:09 by vlegros           #+#    #+#             */
-/*   Updated: 2019/05/18 18:03:09 by vlegros          ###   ########.fr       */
+/*   Created: 2019/06/30 15:41:25 by vlegros           #+#    #+#             */
+/*   Updated: 2019/06/30 15:41:25 by vlegros          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_ptr_vec_pushback(t_vec *vec, void *value)
+
+void	*ft_ptr_vec_popfront(t_vec *vec)
 {
+	void	*ret_val;
+	size_t i;
+
 	if (!vec)
-		return (-1);
-	if (ft_ptr_vec_enlarge(vec))
-	{
-		((void**)(vec->data))[vec->length++] = value;
-		return (1);
-	}
-	return (0);
+		return (NULL);
+	if (!vec->length || !vec->data)
+		return (NULL);
+	ret_val = ((void**)(vec->data))[0];
+	i = -1;
+	while (++i < vec->length - 1)
+		((void**)(vec->data))[i] = ((void**)(vec->data))[i + 1];
+	vec->length--;
+	return (ret_val);
 }

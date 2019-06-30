@@ -12,6 +12,15 @@
 
 #include "push_swap.h"
 
+void	del(void **elem)
+{
+	t_vis **temp;
+
+	temp = (t_vis**)elem;
+	ft_memdel(&((*temp)->img));
+	ft_memdel(elem);
+}
+
 int		main(int argc, char **argv)
 {
 	t_ivec *a;
