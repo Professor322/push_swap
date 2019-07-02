@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	vis_push(t_data *dst, t_data *src, char *action, t_mlx *mlx)
+int 	vis_push(t_data *dst, t_data *src, char *action)
 {
 	if (!src || !dst)
 		return (-1);
@@ -22,15 +22,12 @@ int 	vis_push(t_data *dst, t_data *src, char *action, t_mlx *mlx)
 		return (0);
 	if (!(ft_ptr_vec_pushfront(dst->img_vec, ft_ptr_vec_popfront(src->img_vec))))
 		return (0);
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-	display_stack(mlx, dst->img_vec, dst->stack);
-	display_stack(mlx, src->img_vec, src->stack);
 	if (action)
 		ft_printf("%s\n", action);
 	return (1);
 }
 
-int 	vis_swap(t_data *stack, char *action, t_mlx *mlx)
+int 	vis_swap(t_data *stack, char *action)
 {
 	int		temp;
 	void	*temp_ptr;
@@ -45,14 +42,12 @@ int 	vis_swap(t_data *stack, char *action, t_mlx *mlx)
 	temp_ptr = ((void**)(stack->img_vec->data))[0];
 	((void**)(stack->img_vec->data))[0] = ((void**)(stack->img_vec->data))[1];
 	((void**)(stack->img_vec->data))[1] = temp_ptr;
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-	display_stack(mlx, stack->img_vec, stack->stack);
 	if (action)
 		ft_printf("%s\n", action);
 	return (1);
 }
 
-int 	vis_rotate_up(t_data *stack, char *action, t_mlx *mlx)
+int 	vis_rotate_up(t_data *stack, char *action)
 {
 	int 	temp;
 	void	*temp_ptr;
@@ -70,14 +65,12 @@ int 	vis_rotate_up(t_data *stack, char *action, t_mlx *mlx)
 	while ((size_t)++i < stack->img_vec->length - 1)
 		((void**)(stack->img_vec->data))[i] = ((void**)(stack->img_vec->data))[i + 1];
 	((void**)(stack->img_vec->data))[stack->img_vec->length - 1] = temp_ptr;
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-	display_stack(mlx, stack->img_vec, stack->stack);
 	if (action)
 		ft_printf("%s\n", action);
 	return (1);
 }
 
-int 	vis_rotate_down(t_data *stack, char *action, t_mlx *mlx)
+int 	vis_rotate_down(t_data *stack, char *action)
 {
 	int 	temp;
 	void	*temp_ptr;
@@ -95,8 +88,6 @@ int 	vis_rotate_down(t_data *stack, char *action, t_mlx *mlx)
 	while (--i > 0)
 		((void**)(stack->img_vec->data))[i] = ((void**)(stack->img_vec->data))[i - 1];
 	((void**)(stack->img_vec->data))[0] = temp_ptr;
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-	display_stack(mlx, stack->img_vec, stack->stack);
 	if (action)
 		ft_printf("%s\n", action);
 	return (1);

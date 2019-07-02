@@ -33,6 +33,27 @@ static void		apply_command(t_data *a, t_data *b, int command_num, t_mlx *mlx)
 	rotations_down(a, b, command_num, mlx);
 }
 
+int viz_stack(void * param)
+{
+	static int counter = 0;
+
+	mlx_clear_window(((t_mlx*)param)->mlx_ptr, ((t_mlx*)param)->win_ptr);
+	if (!gc(param))
+	{
+		rainbow(A_IMG);
+		display_stack(param, A_IMG, ((t_mlx *)param)->a.stack);
+		mlx_string_put(((t_mlx *)param)->mlx_ptr,  ((t_mlx *)param)->win_ptr,  ((t_mlx *)param)->width - 100,  ((t_mlx *)param)->height - 100, 0xFFFFFF, ft_itoa(counter));
+	}
+	else
+	{
+		change_color(A_IMG,0 ,A_IMG->length, ((t_mlx *)param)->color_a);
+		display_stack(param, A_IMG, ((t_mlx *)param)->a.stack);
+		change_color(B_IMG, 0,B_IMG->length, ((t_mlx *)param)->color_b);
+		display_stack(param, B_IMG, ((t_mlx *)param)->b.stack);
+		mlx_string_put(((t_mlx *)param)->mlx_ptr,  ((t_mlx *)param)->win_ptr,  ((t_mlx *)param)->width - 100, ((t_mlx *)param)->width - 50 , 0xFFFFFF, ft_itoa(++counter));
+	}
+}
+
 int gc(void *param)
 {
 	char *command;

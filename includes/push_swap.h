@@ -29,6 +29,24 @@
 #define B_VAL  ((t_mlx*)param)->b.val_vec
 #define B_IMG  ((t_mlx*)param)->b.img_vec
 
+#define P_RED 0xFF555E
+#define ORANGE 0xFF8650
+#define P_YELLOW 0xFFE981
+#define P_GREEN 0x8BF18B
+#define LIGHT_BLUE 0x83B2FF
+#define P_BLUE 0x203D85
+#define PURPLE 0x9B6EF3
+
+typedef struct	s_img
+{
+	void	*img;
+	int 	i_width;
+	int 	i_height;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+}				t_img;
+
 typedef struct	s_data
 {
 	t_ivec	*val_vec;
@@ -44,6 +62,12 @@ typedef struct	s_mlx
 	t_data	b;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	size_t 	len;
+	int 	debug;
+	int 	visual;
+	int 	color_a;
+	int 	color_b;
+	int 	counter;
 }				t_mlx;
 
 typedef enum	e_flags
@@ -110,19 +134,23 @@ size_t 	calculate_and_place(t_ivec **a, t_ivec **b, int elem, int flag);
 void	merge(t_ivec **a, t_ivec **b);
 void	sort(t_ivec **a, t_ivec **b);
 size_t	rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet);
+int 	search_through(t_ivec *vec, int value);
 /**
  * visualisation
  */
-void	*create_elem(t_mlx *param, int value);
+void	*create_elem(t_mlx *param, int length,int value);
 t_ivec	*rearrange_elems(t_ivec *stack);
 void	del(void **elem);
 t_vec	*vis_vec(t_mlx *param, t_ivec *stack);
 void	display_stack(t_mlx *param, t_vec *vec, char stack);
-int 	vis_push(t_data *dst, t_data *src, char *action, t_mlx *mlx);
-int 	vis_swap(t_data *stack, char *action, t_mlx *mlx);
-int 	vis_rotate_up(t_data *stack, char *action, t_mlx *mlx);
-int 	vis_rotate_down(t_data *stack, char *action, t_mlx *mlx);
+int 	vis_push(t_data *dst, t_data *src, char *action);
+int 	vis_swap(t_data *stack, char *action);
+int 	vis_rotate_up(t_data *stack, char *action);
+int 	vis_rotate_down(t_data *stack, char *action);
 int 	gc(void *param);
+int		viz_stack(void * param);
+void	change_color(t_vec *vec, int from, int to, int color);
+void 	rainbow(t_vec *vec);
 
 
 #endif

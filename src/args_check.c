@@ -12,12 +12,10 @@
 
 #include "push_swap.h"
 
-static int 	search_through(t_ivec *vec, int value)
+int 	search_through(t_ivec *vec, int value)
 {
 	int i;
 
-	if (vec->length == 1)
-		return (0);
 	i = -1;
 	while ((size_t)++i < vec->length)
 		if (vec->data[i] == value)
