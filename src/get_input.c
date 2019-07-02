@@ -25,32 +25,39 @@ static int		check_commands(char *argv)
 	return (-1);
 }
 
-static void		apply_command(t_ivec **a, t_ivec **b, int command_num)
+static void		apply_command(t_data *a, t_data *b, int command_num, t_mlx *mlx)
 {
-	swaps(*a, *b, command_num);
-	pushes(a, b, command_num);
-	rotations_up(*a, *b, command_num);
-	rotations_down(*a, *b, command_num);
+	swaps(a, b, command_num, mlx);
+	pushes(a, b, command_num, mlx);
+	rotations_up(a, b, command_num, mlx);
+	rotations_down(a, b, command_num, mlx);
 }
 
-void	get_input(t_ivec **a, t_ivec **b)
+int gc(void *param)
 {
 	char *command;
 	int	command_num;
 
 	command = NULL;
-	while (get_next_line(0, &command))
+	if (get_next_line(0, &command))
 	{
-		ft_printf("%s\n", command);
 		command_num = check_commands(command);
-		ft_memdel((void**)&command);
+		ft_memdel((void **)&command);
 		if (command_num == -1)
 		{
-			ft_int_vec_del(a);
-			ft_int_vec_del(b);
+			ft_int_vec_del(&A_VAL);
+			ft_int_vec_del(&B_VAL);
 			finish_him(INPUT_ERROR);
 		}
-		apply_command(a, b, command_num);
+		apply_command(&A, &B, command_num, (t_mlx*)param);
+		return (1);
 	}
+	return (0);
+}
+
+void	get_input(t_mlx *mlx)
+{
+	while (gc(mlx))
+		;
 
 }

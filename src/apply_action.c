@@ -12,62 +12,62 @@
 
 #include "push_swap.h"
 
-void	push_on_stack(t_ivec **a, t_ivec **b, int stack_to_push)
+void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_mlx *mlx)
 {
 	if (!a || !b)
 		return ;
 	if (stack_to_push == PUSH_A)
 	{
-		if(!push(*a, *b, DO_OP, NULL))
+		if(!vis_push(a, b, NULL, mlx))
 		{
-			ft_int_vec_del(a);
-			ft_int_vec_del(b);
+			ft_int_vec_del(&a->val_vec);
+			ft_int_vec_del(&b->val_vec);
 			finish_him(MALLOC_ERROR);
 		}
 	}
 	else if (stack_to_push == PUSH_B)
 	{
-		if (!push(*b, *a, DO_OP, NULL))
+		if (!vis_push(b, a, NULL, mlx))
 		{
-			ft_int_vec_del(a);
-			ft_int_vec_del(b);
+			ft_int_vec_del(&a->val_vec);
+			ft_int_vec_del(&b->val_vec);
 			finish_him(MALLOC_ERROR);
 		}
 	}
 }
 
-void	swap_stack_elems(t_ivec *a, t_ivec *b, int stack_to_swap)
+void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_mlx *mlx)
 {
 	if (stack_to_swap == SWAP_A)
-		swap(a, NULL);
+		vis_swap(a, NULL, mlx);
 	else if (stack_to_swap == SWAP_B)
-		swap(b, NULL);
+		vis_swap(b, NULL, mlx);
 	else if (stack_to_swap == SWAP_BOTH)
 	{
-		swap(a, NULL);
-		swap(b, NULL);
+		vis_swap(a, NULL, mlx);
+		vis_swap(b, NULL, mlx);
 	}
 }
 
-void	rotate_elems(t_ivec *a, t_ivec *b, int stack_to_rotate)
+void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate, t_mlx *mlx)
 {
 
 	if (stack_to_rotate == ROTATE_A_UP)
-		rotate_up(a, NULL);
+		vis_rotate_up(a, NULL, mlx);
 	else if (stack_to_rotate == ROTATE_B_UP)
-		rotate_up(b, NULL);
+		vis_rotate_up(b, NULL, mlx);
 	else if (stack_to_rotate == ROTATE_BOTH_UP)
 	{
-		rotate_up(a, NULL);
-		rotate_up(b, NULL);
+		vis_rotate_up(a, NULL, mlx);
+		vis_rotate_up(b, NULL, mlx);
 	}
 	else if (stack_to_rotate == ROTATE_A_DOWN)
-		rotate_down(a, NULL);
+		vis_rotate_down(a, NULL, mlx);
 	else if (stack_to_rotate == ROTATE_B_DOWN)
-		rotate_down(b, NULL);
+		vis_rotate_down(b, NULL, mlx);
 	else if (stack_to_rotate == ROTATE_BOTH_DOWN)
 	{
-		rotate_down(a, NULL);
-		rotate_down(b, NULL);
+		vis_rotate_down(a, NULL, mlx);
+		vis_rotate_down(b, NULL, mlx);
 	}
 }

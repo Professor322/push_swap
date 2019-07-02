@@ -55,7 +55,7 @@ int 	rotate_up(t_ivec *stack, char *action)
 	stack->data[stack->length - 1] = temp;
 	if (action)
 		ft_printf("%s\n", action);
-	return (0);
+	return (1);
 }
 
 int 	rotate_down(t_ivec *stack, char *action)

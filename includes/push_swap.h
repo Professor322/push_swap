@@ -16,27 +16,35 @@
 # include "../libft/includes/libft.h"
 # include <mlx.h>
 
-# define DEBUG       1
+# define DEBUG        0
 # define MALLOC_ERROR 2
 # define INPUT_ERROR  3
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
+#define A ((t_mlx*)param)->a
+#define	A_VAL ((t_mlx*)param)->a.val_vec
+#define	A_IMG ((t_mlx*)param)->a.img_vec
+#define B      ((t_mlx*)param)->b
+#define B_VAL  ((t_mlx*)param)->b.val_vec
+#define B_IMG  ((t_mlx*)param)->b.img_vec
+
+typedef struct	s_data
+{
+	t_ivec	*val_vec;
+	t_vec	*img_vec;
+	char 	stack;
+}				t_data;
+
 typedef struct	s_mlx
 {
 	int 	width;
 	int 	height;
+	t_data 	a;
+	t_data	b;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img_ptr;
-
 }				t_mlx;
-
-typedef struct	s_vis
-{
-	int		val;
-	void	*img;
-}				t_vis;
 
 typedef enum	e_flags
 {
@@ -78,19 +86,19 @@ long	ft_atoi_move(char **src);
 void	check_integers(int argc, char **argv);
 t_ivec	*create_stack(int argc, char **argv);
 
-void	rotate_elems(t_ivec *a, t_ivec *b, int stack_to_rotate);
-void	swap_stack_elems(t_ivec *a, t_ivec *b, int stack_to_swap);
-void	push_on_stack(t_ivec **a, t_ivec **b, int stack_to_push);
+void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate, t_mlx *mlx);
+void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_mlx *mlx);
+void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_mlx *mlx);
 
 /**
  * 	apply and debug
  */
-void	swaps(t_ivec *a, t_ivec *b, int command_num);
-void	pushes(t_ivec **a, t_ivec **b, int command_num);
-void	rotations_up(t_ivec *a, t_ivec *b, int command_num);
-void	rotations_down(t_ivec *a, t_ivec *b, int command_num);
+void	swaps(t_data *a, t_data *b, int command_num, t_mlx *mlx);
+void	pushes(t_data *a, t_data *b, int command_num, t_mlx *mlx);
+void	rotations_up(t_data *a, t_data *b, int command_num, t_mlx *mlx);
+void	rotations_down(t_data *a, t_data *b, int command_num, t_mlx *mlx);
 
-void	get_input(t_ivec **a, t_ivec **b);
+void	get_input(t_mlx *mlx);
 void	print_stack(t_ivec *a, t_ivec *b);
 int 	check_order(t_ivec *a, t_ivec *b, int flag);
 
@@ -105,8 +113,16 @@ size_t	rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet);
 /**
  * visualisation
  */
-void	create_elem(t_mlx *param, int value);
+void	*create_elem(t_mlx *param, int value);
 t_ivec	*rearrange_elems(t_ivec *stack);
 void	del(void **elem);
+t_vec	*vis_vec(t_mlx *param, t_ivec *stack);
+void	display_stack(t_mlx *param, t_vec *vec, char stack);
+int 	vis_push(t_data *dst, t_data *src, char *action, t_mlx *mlx);
+int 	vis_swap(t_data *stack, char *action, t_mlx *mlx);
+int 	vis_rotate_up(t_data *stack, char *action, t_mlx *mlx);
+int 	vis_rotate_down(t_data *stack, char *action, t_mlx *mlx);
+int 	gc(void *param);
+
 
 #endif
