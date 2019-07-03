@@ -35,7 +35,7 @@
 # define FLAG		vault->flag
 # define ARG_NUM	vault->arg_num
 
-# define COLOR		1
+# define COLOR		0
 
 # define RED 	"\033[0;91m"
 # define RED_LEN	3

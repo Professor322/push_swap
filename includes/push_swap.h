@@ -15,6 +15,7 @@
 
 # include "../libft/includes/libft.h"
 # include <mlx.h>
+# include <time.h>
 
 #define TRUE			1
 #define FALSE			0
@@ -25,6 +26,8 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
+#define	PAUSE	(*((t_manager**)param))->pause
+#define	SPEED	(*((t_manager**)param))->speed
 #define MLX_PTR	(*((t_manager**)param))->mlx_ptr
 #define WIN_PTR	(*((t_manager**)param))->win_ptr
 #define A		(*((t_manager**)param))->a
@@ -80,6 +83,7 @@ typedef struct	s_manager
 	int 	height;
 	int 	error;
 	int 	start;
+	int 	pause;
 }				t_manager;
 
 typedef enum	e_flags

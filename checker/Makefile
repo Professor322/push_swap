@@ -8,7 +8,7 @@ $(NAME): $(OBJ)
 	@make -C ../libft/ all
 	@gcc $(FLAGS) $(MLX_FLAGS) -o $(NAME) $(OBJ)  -I ../includes/ ../libft/libft.a
 %.o: %.c
-	gcc $(FLAGS) -I ../includes/ -c $< -o $@
+	gcc $(FLAGS)-I ../includes/ -c $< -o $@
 clean:
 	@rm -f *.o
 	@rm -f ../src/*.o

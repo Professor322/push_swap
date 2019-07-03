@@ -107,4 +107,6 @@ void rainbow(t_vec *vec)
 		change_color(vec, 5 * len, 6 * len, P_BLUE);
 		change_color(vec, 6 * len, vec->length, PURPLE);
 	}
+	else
+		change_color(vec, 0, vec->length, P_GREEN);
 }

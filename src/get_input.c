@@ -34,27 +34,41 @@ static void		apply_command(t_data *a, t_data *b, int command_num,
 	rotations_down(a, b, command_num, checker);
 }
 
+void	delay(int number_of_seconds)
+{
+	const int milli_seconds = 50000 * number_of_seconds;
+
+	clock_t start_time = clock();
+
+	while (clock() < start_time + milli_seconds)
+		;
+}
+
 int		visualize(void *param)
 {
 	static int counter = 0;
 
-	mlx_clear_window(MLX_PTR, WIN_PTR);
-	if (!get_command(param))
+	if (!PAUSE)
 	{
-		rainbow(A_IMG);
-		display_stack(*((void**)param), A_IMG, A->stack);
-		mlx_string_put(MLX_PTR, WIN_PTR, C_WIDTH - 100, C_HEIGHT - 50,
-				P_GREEN, ft_itoa(counter));
-		return (1);
-	}
-	else
-	{
-		change_color(A_IMG, 0 ,A_IMG->length, COLOR_A);
-		display_stack(*((void**)param), A_IMG, A->stack);
-		change_color(B_IMG, 0,B_IMG->length, COLOR_B);
-		display_stack(*((void**)param), B_IMG, B->stack);
-		mlx_string_put(MLX_PTR, WIN_PTR, C_WIDTH - 100, C_HEIGHT - 50,
-				P_RED, ft_itoa(++counter));
+		delay(SPEED);
+		mlx_clear_window(MLX_PTR, WIN_PTR);
+		if (!get_command(param))
+		{
+			rainbow(A_IMG);
+			display_stack(*((void **)param), A_IMG, A->stack);
+			mlx_string_put(MLX_PTR, WIN_PTR, C_WIDTH - 100, C_HEIGHT - 50,
+					P_GREEN, ft_itoa(counter));
+			return (1);
+		}
+		else
+		{
+			change_color(A_IMG, 0, A_IMG->length, COLOR_A);
+			display_stack(*((void **)param), A_IMG, A->stack);
+			change_color(B_IMG, 0, B_IMG->length, COLOR_B);
+			display_stack(*((void **)param), B_IMG, B->stack);
+			mlx_string_put(MLX_PTR, WIN_PTR, C_WIDTH - 100, C_HEIGHT - 50,
+					P_RED, ft_itoa(++counter));
+		}
 	}
 	return (0);
 }
@@ -68,6 +82,7 @@ int get_command(void *param)
 	if (get_next_line(0, &command))
 	{
 		command_num = check_commands(command);
+		ft_printf("%s\n", command);
 		ft_memdel((void **)&command);
 		if (command_num == -1)
 		{
