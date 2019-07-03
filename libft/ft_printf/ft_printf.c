@@ -23,7 +23,7 @@ int		paint_output(char **str, t_buf *tbuf, char *color, int len)
 {
 	if (*str + 1 + len && *(*str + 1 + len) == '}')
 	{
-		print_buf(tbuf, 0);
+		print_buf(tbuf);
 		write(1, color, 7);
 		*str = ++*str + len + 1;
 		return (1);
@@ -59,7 +59,7 @@ int		parse_till_percent(char **str, t_buf *tbuf)
 			}
 			add_buf(tbuf, *(*str)++);
 			if (tbuf->i == PRINTF_BUF)
-				print_buf(tbuf, 0);
+				print_buf(tbuf);
 		}
 	}
 	return (0);
@@ -90,6 +90,6 @@ int		ft_printf(const char *restrict format, ...)
 			if (parse_percent(&vault, &str, &tbuf, &valist) == -1)
 				return (ft_exit(&valist, &tbuf));
 	}
-	print_buf(&tbuf, 1);
+	print_buf(&tbuf);
 	return (ft_exit(&valist, &tbuf));
 }

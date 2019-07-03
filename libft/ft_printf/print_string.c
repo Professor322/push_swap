@@ -14,7 +14,7 @@
 
 static void inline	ft_unprint(t_buf *tbuf, int c)
 {
-	print_buf(tbuf, 0);
+	print_buf(tbuf);
 	tbuf->count++;
 	write(1, "\\", 1);
 	ft_printf("%o", c);
@@ -52,7 +52,7 @@ static void inline	print_string_str(t_one *vault, t_buf *tbuf, char *str)
 		while (k-- > 0)
 			char_to_buf(vault, tbuf, &str);
 	}
-	print_buf(tbuf, 0);
+	print_buf(tbuf);
 }
 
 short				print_string_wstr(t_one *vault, t_buf *tbuf, wchar_t *str)
@@ -72,7 +72,7 @@ short				print_string_wstr(t_one *vault, t_buf *tbuf, wchar_t *str)
 		string_to_utf8(vault, tbuf, str);
 		fill_width(vault, tbuf, len);
 	}
-	print_buf(tbuf, 0);
+	print_buf(tbuf);
 	return (0);
 }
 

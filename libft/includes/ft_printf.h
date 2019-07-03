@@ -35,7 +35,7 @@
 # define FLAG		vault->flag
 # define ARG_NUM	vault->arg_num
 
-# define COLOR		0
+# define COLOR		1
 
 # define RED 	"\033[0;91m"
 # define RED_LEN	3
@@ -116,7 +116,7 @@ int				ft_printf(const char *restrict format, ...);
 void			ft_vault_null(t_one *vault);
 int				parse_percent(t_one *vault, char **str, t_buf *tbuf,
 				t_va *valist);
-void			print_buf(t_buf *tbuf, int last_print);
+void			print_buf(t_buf *tbuf);
 void			get_wp_from_args(t_one *vault, t_va *valist);
 long			atoi_move(char **str);
 int				char_is_flag(char *c);

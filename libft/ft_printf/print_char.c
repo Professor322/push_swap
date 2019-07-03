@@ -23,7 +23,7 @@ short	print_char_c(t_one *vault, t_buf *tbuf, char c)
 		add_buf(tbuf, filler);
 	if (MINUS == 0)
 		add_buf(tbuf, c);
-	print_buf(tbuf, 0);
+	print_buf(tbuf);
 	return (0);
 }
 
@@ -79,7 +79,7 @@ short	print_char_wc(t_one *vault, t_buf *tbuf, unsigned int wc)
 		add_buf(tbuf, filler);
 	if (MINUS == 0)
 		convert_to_utf8(tbuf, wc);
-	print_buf(tbuf, 0);
+	print_buf(tbuf);
 	return (0);
 }
 

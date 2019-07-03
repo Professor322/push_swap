@@ -85,7 +85,7 @@ void				itoa_base_unsigned(size_t num, t_unum *nums, t_one *vault,
 	thanks_norme(vault, nums, tmp, tbuf);
 	if (MINUS != 0)
 		fill_num_width(vault, tbuf, &chars_number, sign);
-	print_buf(tbuf, 0);
+	print_buf(tbuf);
 }
 
 void				itoa_base_signed(long num_in, t_unum *nums, t_one *vault,
@@ -114,5 +114,5 @@ void				itoa_base_signed(long num_in, t_unum *nums, t_one *vault,
 	thanks_norme(vault, nums, tmp, tbuf);
 	if (MINUS != 0)
 		fill_num_width(vault, tbuf, &chars_number, sign);
-	print_buf(tbuf, 0);
+	print_buf(tbuf);
 }

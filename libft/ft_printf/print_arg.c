@@ -21,7 +21,7 @@ short	print_arg(t_one *vault, t_va *valist, t_buf *tbuf)
 	if (FLAG == 'p')
 		HASH = 1;
 	if (FLAG == 0)
-		print_buf(tbuf, 0);
+		print_buf(tbuf);
 	else if (FLAG == 's' || FLAG == 'S' || FLAG == 'r')
 		return (print_string(vault, valist, tbuf));
 	else if (ft_strchr(ints, FLAG))
