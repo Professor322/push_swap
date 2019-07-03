@@ -41,28 +41,50 @@ static void check_new_value(t_ivec **vec, char **temp, char **save_ptr)
 	ft_memdel((void**)save_ptr);
 }
 
-void	check_integers(int argc, char **argv)
+void		check_integers(int from, int argc, char **argv)
 {
-	int		 i;
 	char	*temp;
 	char	*save_ptr;
 	t_ivec	*vec;
 
 	if (!(vec = ft_int_vec_init()))
-	{
-		ft_memdel((void**)&vec);
 		finish_him(MALLOC_ERROR);
-	}
-	i = 0;
-	while (++i < argc)
+	while (from < argc)
 	{
-		if (!(temp = ft_strtrim(argv[i])))
+		if (!(temp = ft_strtrim(argv[from])))
 		{
 			ft_memdel((void**)&vec);
 			finish_him(MALLOC_ERROR);
 		}
 		save_ptr = temp;
 		check_new_value(&vec, &temp, &save_ptr);
+		from++;
 	}
 	ft_int_vec_del(&vec);
+}
+
+int		check_options(t_manager **manager, int argc, char **argv)
+{
+	int i;
+	int from;
+	const int len = argc > 3 ? 3 : argc;
+
+	i = 0;
+	from = 1;
+	while (++i < len)
+		if (!ft_strcmp(argv[i], "-v") || !ft_strcmp(argv[i], "--visual"))
+		{
+			if ((*manager)->visual)
+				del_manager(manager);
+			(*manager)->visual = TRUE;
+			from++;
+		}
+		else if (!ft_strcmp(argv[i], "-d") || !ft_strcmp(argv[i], "--debug"))
+		{
+			if ((*manager)->debug)
+				del_manager(manager);
+			(*manager)->debug = TRUE;
+			from++;
+		}
+	return (from);
 }

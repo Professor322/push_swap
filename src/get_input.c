@@ -28,10 +28,10 @@ static int		check_commands(char *argv)
 static void		apply_command(t_data *a, t_data *b, int command_num,
 		t_manager *checker)
 {
-	swaps(a, b, command_num);
-	pushes(a, b, command_num);
-	rotations_up(a, b, command_num);
-	rotations_down(a, b, command_num);
+	swaps(a, b, command_num, checker);
+	pushes(a, b, command_num, checker);
+	rotations_up(a, b, command_num, checker);
+	rotations_down(a, b, command_num, checker);
 }
 
 int		visualize(void *param)
@@ -42,7 +42,7 @@ int		visualize(void *param)
 	if (!get_command(param))
 	{
 		rainbow(A_IMG);
-		display_stack(param, A_IMG, A->stack);
+		display_stack(*((void**)param), A_IMG, A->stack);
 		mlx_string_put(MLX_PTR, WIN_PTR, C_WIDTH - 100, C_HEIGHT - 50,
 				P_GREEN, ft_itoa(counter));
 		return (1);
@@ -50,9 +50,9 @@ int		visualize(void *param)
 	else
 	{
 		change_color(A_IMG, 0 ,A_IMG->length, COLOR_A);
-		display_stack(param, A_IMG, A->stack);
+		display_stack(*((void**)param), A_IMG, A->stack);
 		change_color(B_IMG, 0,B_IMG->length, COLOR_B);
-		display_stack(param, B_IMG, B->stack);
+		display_stack(*((void**)param), B_IMG, B->stack);
 		mlx_string_put(MLX_PTR, WIN_PTR, C_WIDTH - 100, C_HEIGHT - 50,
 				P_RED, ft_itoa(++counter));
 	}
@@ -71,19 +71,18 @@ int get_command(void *param)
 		ft_memdel((void **)&command);
 		if (command_num == -1)
 		{
-			ft_int_vec_del(&A_VAL);
-			ft_int_vec_del(&B_VAL);
-			finish_him(INPUT_ERROR);
+			(*((t_manager**)((void**)param)))->error = INPUT_ERROR;
+			del_manager(param);
 		}
-		apply_command(A, B, command_num, (t_manager*)param);
+		apply_command(A, B, command_num, *((t_manager**)((void**)param)));
 		return (1);
 	}
 	return (0);
 }
 
-void	get_input(t_manager *checker)
+void	get_input(t_manager **checker)
 {
-	while (get_command(checker))
+	while (get_command((void**)checker))
 		;
 
 }

@@ -15,7 +15,8 @@
 static int 	a_vec(t_manager *manager, t_data **new, int argc, char **argv)
 {
 	(*new)->stack = 'a';
-	if (!((*new)->val_vec = create_stack(argc, argv)))
+	(*new)->img_vec = NULL;
+	if (!((*new)->val_vec = create_stack(manager->start,argc, argv)))
 	{
 		ft_memdel((void**)new);
 		return (0);
@@ -33,6 +34,7 @@ static int 	a_vec(t_manager *manager, t_data **new, int argc, char **argv)
 static int 	b_vec(t_manager *manager, t_data **new)
 {
 	(*new)->stack = 'b';
+	(*new)->img_vec = NULL;
 	if (!((*new)->val_vec = ft_int_vec_init()))
 	{
 		ft_memdel((void**)new);
@@ -81,14 +83,8 @@ static void	visual_init(t_manager *manager)
 	}
 }
 
-t_manager	*manager_init(int argc, char **argv)
+t_manager	*manager_init(t_manager *manager, int argc, char **argv)
 {
-	t_manager *manager;
-
-	if (!(manager = (t_manager*)malloc(sizeof(t_manager))))
-		finish_him(MALLOC_ERROR);
-	manager->visual = TRUE;
-	manager->debug = TRUE;
 	visual_init(manager);
 	if (!(manager->a = t_data_init(manager, argc, argv, A_ONLY)))
 	{
@@ -102,7 +98,7 @@ t_manager	*manager_init(int argc, char **argv)
 	{
 		if (manager->visual)
 			mlx_destroy_window(manager->mlx_ptr, manager->win_ptr);
-		t_data_del(&manager->a);
+		t_data_del(manager, &manager->a);
 		ft_memdel((void**)&manager);
 		finish_him(MALLOC_ERROR);
 	}

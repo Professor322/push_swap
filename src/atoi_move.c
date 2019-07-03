@@ -30,7 +30,7 @@ long	ft_atoi_move(char **src)
 	sign = 1;
 	while (ft_isspace(**src))
 		(*src)++;
-	if (**src == '+' || **src == '-')
+	if ((**src == '+' || **src == '-') && dec_check(*((*src) + 1)))
 		*((*src)++) == '-' ? (sign *= -1) : (sign *= 1);
 	while (**src && !ft_isspace(**src))
 		result = result * 10 + dec_check(*((*src)++));

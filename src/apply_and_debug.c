@@ -12,116 +12,127 @@
 
 #include "push_swap.h"
 
-void	swaps(t_data *a, t_data *b, int command_num)
+void	swaps(t_data *a, t_data *b, int command_num, t_manager *checker)
 {
 	if (command_num == SWAP_A)
 	{
-		swap_stack_elems(a, b, command_num);
-		if (DEBUG)
+		swap_stack_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nswap a\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}swap a{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 	else if (command_num == SWAP_B)
 	{
-		swap_stack_elems(a, b, command_num);
-		if (DEBUG)
+		swap_stack_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nswap b\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}swap b{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 	else if (command_num == SWAP_BOTH)
 	{
-		swap_stack_elems(a, b, command_num);
-		if (DEBUG)
+		swap_stack_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nswap both\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}swap both{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 }
 
-void	pushes(t_data *a, t_data *b, int command_num)
+void	pushes(t_data *a, t_data *b, int command_num, t_manager *checker)
 {
 	if (command_num == PUSH_A)
 	{
-		push_on_stack(a, b, command_num);
-		if (DEBUG)
+		push_on_stack(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\npush a\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}push a{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 	else if (command_num == PUSH_B)
 	{
-		push_on_stack(a, b, command_num);
-		if (DEBUG)
+		push_on_stack(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\npush b\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}push b{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 }
 
-void	rotations_up(t_data *a, t_data *b, int command_num)
+void	rotations_up(t_data *a, t_data *b, int command_num, t_manager *checker)
 {
 	if (command_num == ROTATE_A_UP)
 	{
-		rotate_elems(a, b, command_num);
-		if (DEBUG)
+		rotate_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nrotate a up\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}rotate a up{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 	else if (command_num == ROTATE_B_UP)
 	{
-		rotate_elems(a, b, command_num);
-		if (DEBUG)
+		rotate_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nrotate b up\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}rotate b up{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 	else if (command_num == ROTATE_BOTH_UP)
 	{
-		rotate_elems(a, b, command_num);
-		if (DEBUG)
+		rotate_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nrotate both up\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}rotate both up{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 }
 
-void	rotations_down(t_data *a, t_data *b, int command_num)
+void	rotations_down(t_data *a, t_data *b, int command_num, t_manager *checker)
 {
 	if (command_num == ROTATE_A_DOWN)
 	{
-		rotate_elems(a, b, command_num);
-		if (DEBUG)
+		rotate_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nrotate a down\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}rotate a down{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 	else if (command_num == ROTATE_B_DOWN)
 	{
-		rotate_elems(a, b, command_num);
-		if (DEBUG)
+		rotate_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nrotate b down\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}rotate b down{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
 	else if (command_num == ROTATE_BOTH_DOWN)
 	{
-		rotate_elems(a, b, command_num);
-		if (DEBUG)
+		rotate_elems(a, b, command_num, checker);
+		if (checker->debug)
 		{
-			printf("\nrotate both down\n");
+			ft_printf("\n________________________________");
+			ft_printf("\n|{BLUE}rotate both down{GREY}|\n");
 			print_stack(a->val_vec, b->val_vec);
 		}
 	}
