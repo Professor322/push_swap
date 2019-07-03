@@ -21,13 +21,13 @@ t_ivec *create_stack(int argc, char **argv)
 
 	i = 0;
 	if (!(stack = ft_int_vec_init()))
-		finish_him(MALLOC_ERROR);
+		return (NULL);
 	while (++i < argc)
 	{
 		if(!(temp = ft_strtrim(argv[i])))
 		{
 			ft_int_vec_del(&stack);
-			finish_him(MALLOC_ERROR);
+			return (NULL);
 		}
 		save_ptr = temp;
 		while (*temp)
@@ -35,7 +35,7 @@ t_ivec *create_stack(int argc, char **argv)
 			{
 				ft_int_vec_del(&stack);
 				ft_memdel((void**)&save_ptr);
-				finish_him(MALLOC_ERROR);
+				return (NULL);
 			}
 		ft_memdel((void**)&save_ptr);
 	}

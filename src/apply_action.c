@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_mlx *mlx)
+void	push_on_stack(t_data *a, t_data *b, int stack_to_push)
 {
 	if (!a || !b)
 		return ;
@@ -36,7 +36,7 @@ void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_mlx *mlx)
 	}
 }
 
-void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_mlx *mlx)
+void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap)
 {
 	if (stack_to_swap == SWAP_A)
 		vis_swap(a, NULL);
@@ -49,7 +49,7 @@ void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_mlx *mlx)
 	}
 }
 
-void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate, t_mlx *mlx)
+void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate)
 {
 
 	if (stack_to_rotate == ROTATE_A_UP)

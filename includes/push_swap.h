@@ -16,19 +16,28 @@
 # include "../libft/includes/libft.h"
 # include <mlx.h>
 
+#define TRUE 1
+#define FALSE 0
+
 # define DEBUG        0
 # define MALLOC_ERROR 2
 # define INPUT_ERROR  3
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 
-#define A ((t_mlx*)param)->a
-#define	A_VAL ((t_mlx*)param)->a.val_vec
-#define	A_IMG ((t_mlx*)param)->a.img_vec
-#define B      ((t_mlx*)param)->b
-#define B_VAL  ((t_mlx*)param)->b.val_vec
-#define B_IMG  ((t_mlx*)param)->b.img_vec
+#define MLX_PTR ((t_manager*)param)->mlx_ptr
+#define WIN_PTR ((t_manager*)param)->win_ptr
+#define A ((t_manager*)param)->a
+#define	A_VAL ((t_manager*)param)->a->val_vec
+#define	A_IMG ((t_manager*)param)->a->img_vec
+#define B      ((t_manager*)param)->b
+#define B_VAL  ((t_manager*)param)->b->val_vec
+#define B_IMG  ((t_manager*)param)->b->img_vec
 
+#define	C_WIDTH 1000
+#define C_HEIGHT 1000
+#define COLOR_A 0x48D1CC
+#define COLOR_B 0xF0E68C
 #define P_RED 0xFF555E
 #define ORANGE 0xFF8650
 #define P_YELLOW 0xFFE981
@@ -40,6 +49,7 @@
 typedef struct	s_img
 {
 	void	*img;
+	void	*mlx_ptr;
 	int 	i_width;
 	int 	i_height;
 	int		bits_per_pixel;
@@ -54,21 +64,21 @@ typedef struct	s_data
 	char 	stack;
 }				t_data;
 
-typedef struct	s_mlx
+typedef struct	s_manager
 {
-	int 	width;
-	int 	height;
-	t_data 	a;
-	t_data	b;
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_data 	*a;
+	t_data	*b;
 	size_t 	len;
 	int 	debug;
 	int 	visual;
+	void	*mlx_ptr;
+	void	*win_ptr;
 	int 	color_a;
 	int 	color_b;
-	int 	counter;
-}				t_mlx;
+	int		speed;
+	int 	width;
+	int 	height;
+}				t_manager;
 
 typedef enum	e_flags
 {
@@ -77,7 +87,8 @@ typedef enum	e_flags
 	VALUE,
 	INDEX,
 	FINAL,
-	A_ONLY
+	A_ONLY,
+	B_ONLY
 }				t_flags;
 
 typedef enum	e_operations
@@ -110,19 +121,19 @@ long	ft_atoi_move(char **src);
 void	check_integers(int argc, char **argv);
 t_ivec	*create_stack(int argc, char **argv);
 
-void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate, t_mlx *mlx);
-void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_mlx *mlx);
-void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_mlx *mlx);
+void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate);
+void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap);
+void	push_on_stack(t_data *a, t_data *b, int stack_to_push);
 
 /**
  * 	apply and debug
  */
-void	swaps(t_data *a, t_data *b, int command_num, t_mlx *mlx);
-void	pushes(t_data *a, t_data *b, int command_num, t_mlx *mlx);
-void	rotations_up(t_data *a, t_data *b, int command_num, t_mlx *mlx);
-void	rotations_down(t_data *a, t_data *b, int command_num, t_mlx *mlx);
+void	swaps(t_data *a, t_data *b, int command_num);
+void	pushes(t_data *a, t_data *b, int command_num);
+void	rotations_up(t_data *a, t_data *b, int command_num);
+void	rotations_down(t_data *a, t_data *b, int command_num);
 
-void	get_input(t_mlx *mlx);
+void	get_input(t_manager *mlx);
 void	print_stack(t_ivec *a, t_ivec *b);
 int 	check_order(t_ivec *a, t_ivec *b, int flag);
 
@@ -138,19 +149,20 @@ int 	search_through(t_ivec *vec, int value);
 /**
  * visualisation
  */
-void	*create_elem(t_mlx *param, int length,int value);
+void	*create_elem(t_manager *param, int length,int value);
 t_ivec	*rearrange_elems(t_ivec *stack);
 void	del(void **elem);
-t_vec	*vis_vec(t_mlx *param, t_ivec *stack);
-void	display_stack(t_mlx *param, t_vec *vec, char stack);
+t_vec	*vis_vec(t_manager *param, t_ivec *stack);
+void	display_stack(t_manager *param, t_vec *vec, char stack);
 int 	vis_push(t_data *dst, t_data *src, char *action);
 int 	vis_swap(t_data *stack, char *action);
 int 	vis_rotate_up(t_data *stack, char *action);
 int 	vis_rotate_down(t_data *stack, char *action);
-int 	gc(void *param);
-int		viz_stack(void * param);
+int 	get_command(void *param);
+int		visualize(void * param);
 void	change_color(t_vec *vec, int from, int to, int color);
 void 	rainbow(t_vec *vec);
-
+t_manager	*manager_init(int argc, char **argv);
+void	t_data_del(t_data **data);
 
 #endif
