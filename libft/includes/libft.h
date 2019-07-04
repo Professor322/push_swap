@@ -19,8 +19,8 @@
 # include "get_next_line.h"
 # include "ft_printf.h"
 
-# define	START_CAP 10
-# define	USE_GC 	  0
+# define START_CAP 10
+# define USE_GC 	  0
 
 typedef	struct		s_list
 {
@@ -72,7 +72,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
-int 				ft_isspace(int c);
+int					ft_isspace(int c);
 
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
@@ -112,18 +112,18 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_ivec				*ft_int_vec_init(void);
 int					ft_int_vec_pushback(t_ivec *vec, int value);
 int					ft_int_vec_pushfront(t_ivec *vec, int value);
-int 				ft_int_vec_enlarge(t_ivec *vec);
+int					ft_int_vec_enlarge(t_ivec *vec);
 void				ft_int_vec_del(t_ivec **vec);
 int					ft_int_vec_popfront(t_ivec *vec);
 
 t_vec				*ft_ptr_vec_init(void);
 int					ft_ptr_vec_enlarge(t_vec *vec);
 int					ft_ptr_vec_pushback(t_vec *vec, void *value);
-int 				ft_ptr_vec_pushfront(t_vec *vec, void *value);
-void*				ft_ptr_vec_popfront(t_vec *vec);
+int					ft_ptr_vec_pushfront(t_vec *vec, void *value);
+void				*ft_ptr_vec_popfront(t_vec *vec);
 void				ft_ptr_vec_del(t_vec **vec, void (*del)(void**));
 
-t_vec   			*ft_vec_init(size_t size);
+t_vec				*ft_vec_init(size_t size);
 int					ft_vec_enlarge(t_vec *vec);
 void				ft_vec_clear(t_vec **vec);
 

@@ -12,11 +12,10 @@
 
 #include "libft.h"
 
-
 void	*ft_ptr_vec_popfront(t_vec *vec)
 {
 	void	*ret_val;
-	size_t i;
+	size_t	i;
 
 	if (!vec)
 		return (NULL);

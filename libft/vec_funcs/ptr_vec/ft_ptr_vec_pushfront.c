@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int 	ft_ptr_vec_pushfront(t_vec *vec, void *value)
+int		ft_ptr_vec_pushfront(t_vec *vec, void *value)
 {
 	int i;
 
@@ -30,5 +30,5 @@ int 	ft_ptr_vec_pushfront(t_vec *vec, void *value)
 		vec->length++;
 		return (1);
 	}
-	return(0);
+	return (0);
 }
