@@ -20,7 +20,8 @@ int		main(int argc, char **argv)
 	if (argc > 1)
 	{
 		check_integers(1, argc, argv);
-		a = create_stack(1, argc, argv);
+		if (!(a = create_stack(1, argc, argv)))
+			finish_him(MALLOC_ERROR);
 		if (!(b = ft_int_vec_init()))
 		{
 			ft_int_vec_del(&a);
