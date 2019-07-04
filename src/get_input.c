@@ -43,7 +43,6 @@ int				get_command(void *param)
 	if (get_next_line(0, &command))
 	{
 		command_num = check_commands(command);
-		ft_printf("%s\n", command);
 		ft_memdel((void **)&command);
 		if (command_num == -1)
 		{

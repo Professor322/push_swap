@@ -16,6 +16,8 @@ int			key_press(int keycode, void *param)
 {
 	static int counter = 0;
 
+	if (keycode == 53)
+		del_manager(param);
 	if (keycode == 126)
 		SPEED > 0 ? SPEED-- : 0;
 	else if (keycode == 125)
@@ -35,9 +37,9 @@ int			key_press(int keycode, void *param)
 
 void		hooks(t_manager **checker)
 {
+	mlx_loop_hook((*checker)->mlx_ptr, visualize, checker);
 	mlx_hook((*checker)->win_ptr, 2, 0, key_press, checker);
 	mlx_hook((*checker)->win_ptr, 17, 0, del_manager, checker);
-	mlx_loop_hook((*checker)->mlx_ptr, visualize, checker);
 	mlx_loop((*checker)->mlx_ptr);
 }
 
@@ -52,9 +54,13 @@ t_manager	*init(int argc, char **argv)
 	checker->error = -1;
 	checker->pause = 0;
 	checker->start = check_options(&checker, argc, argv);
-	check_integers(checker->start, argc, argv);
+	if (!check_integers(checker->start, argc, argv))
+	{
+		ft_memdel((void**)&checker);
+		finish_him(INPUT_ERROR);
+	}
 	checker = manager_init(checker, argc, argv);
-	checker->speed = checker->len >= 50 ? 5 : 15;
+	checker->speed = checker->len >= 50 ? 0 : 10;
 	return (checker);
 }
 

@@ -41,14 +41,16 @@ static void	check_new_value(t_ivec **vec, char **temp, char **save_ptr)
 	ft_memdel((void**)save_ptr);
 }
 
-void		check_integers(int from, int argc, char **argv)
+int			check_integers(int from, int argc, char **argv)
 {
 	char	*temp;
 	char	*save_ptr;
 	t_ivec	*vec;
+	int		flag;
 
 	if (!(vec = ft_int_vec_init()))
 		finish_him(MALLOC_ERROR);
+	flag = 0;
 	while (from < argc)
 	{
 		if (!(temp = ft_strtrim(argv[from])))
@@ -59,6 +61,8 @@ void		check_integers(int from, int argc, char **argv)
 		save_ptr = temp;
 		check_new_value(&vec, &temp, &save_ptr);
 		from++;
+		flag = 1;
 	}
 	ft_int_vec_del(&vec);
+	return (flag);
 }
