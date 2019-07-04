@@ -68,6 +68,15 @@ typedef struct	s_data
 	char 	stack;
 }				t_data;
 
+typedef struct	s_analysis
+{
+	t_ivec *a_v;
+	t_ivec *b_v;
+	int 	a_i;
+	int 	b_i;
+	int 	s_flag;
+}				t_analysis;
+
 typedef struct	s_manager
 {
 	t_data 	*a;
@@ -151,7 +160,7 @@ int 	smart_rotations(t_ivec *stack, char c, int elem, int output_flag);
 size_t 	calculate_and_place(t_ivec **a, t_ivec **b, int elem, int flag);
 void	merge(t_ivec **a, t_ivec **b);
 void	sort(t_ivec **a, t_ivec **b);
-size_t	rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet);
+size_t	rotate_analysis(t_analysis *param);
 int 	search_through(t_ivec *vec, int value);
 /**
  * visualisation

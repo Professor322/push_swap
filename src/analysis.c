@@ -21,73 +21,73 @@ static void	rotate_both(t_ivec *a, t_ivec *b, int (*rotate)(t_ivec*, char*),
 		ft_printf("%s\n", action);
 }
 
-static int	first_case(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet)
+static int	first_case(t_analysis *p)
 {
 	int i;
 
 	i = 0;
-	if (elem_a > elem_b)
+	if (p->a_i > p->b_i)
 	{
-		while (i < elem_b && quiet != ANALYSIS)
+		while (i < p->b_i && p->s_flag != ANALYSIS)
 		{
-			rotate_both(a, b, rotate_up, "rr");
+			rotate_both(p->a_v, p->b_v, rotate_up, "rr");
 			i++;
 		}
-		while (i++ < elem_a && quiet != ANALYSIS)
-			rotate_up(a, "ra");
-		return (elem_a);
+		while (i++ < p->a_i && p->s_flag != ANALYSIS)
+			rotate_up(p->a_v, "ra");
+		return (p->a_i);
 	}
 	else
 	{
-		while (i < elem_a && quiet != ANALYSIS)
+		while (i < p->a_i && p->s_flag != ANALYSIS)
 		{
-			rotate_both(a, b, rotate_up, "rr");
+			rotate_both(p->a_v, p->b_v, rotate_up, "rr");
 			i++;
 		}
-		while (i++ < elem_b && quiet != ANALYSIS)
-			rotate_up(b, "rb");
-		return (elem_b);
+		while (i++ < p->b_i && p->s_flag != ANALYSIS)
+			rotate_up(p->b_v, "rb");
+		return (p->b_i);
 	}
 }
 
-static int	second_case(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet)
+static int	second_case(t_analysis *p)
 {
 	int i;
 
 	i = 0;
-	if (a->length - elem_a > b->length - elem_b)
+	if (p->a_v->length - p->a_i > p->b_v->length - p->b_i)
 	{
-		while ((size_t)i < b->length - elem_b && quiet != ANALYSIS)
+		while ((size_t)i < p->b_v->length - p->b_i && p->s_flag != ANALYSIS)
 		{
-			rotate_both(a, b, rotate_down, "rrr");
+			rotate_both(p->a_v, p->b_v, rotate_down, "rrr");
 			i++;
 		}
-		while ((size_t)i++ < a->length - elem_a && quiet != ANALYSIS)
-			rotate_down(a, "rra");
-		return (a->length - elem_a);
+		while ((size_t)i++ < p->a_v->length - p->a_i && p->s_flag != ANALYSIS)
+			rotate_down(p->a_v, "rra");
+		return (p->a_v->length - p->a_i);
 	}
 	else
 	{
-		while ((size_t)i < a->length - elem_a && quiet != ANALYSIS)
+		while ((size_t)i < p->a_v->length - p->a_i && p->s_flag != ANALYSIS)
 		{
-			rotate_both(a, b, rotate_down, "rrr");
+			rotate_both(p->a_v, p->b_v, rotate_down, "rrr");
 			i++;
 		}
-		while ((size_t)i++ < b->length - elem_b && quiet != ANALYSIS)
-			rotate_down(b, "rrb");
-		return (b->length - elem_b);
+		while ((size_t)i++ < p->b_v->length - p->b_i && p->s_flag != ANALYSIS)
+			rotate_down(p->b_v, "rrb");
+		return (p->b_v->length - p->b_i);
 	}
 }
 
-size_t		rotate_analysis(t_ivec *a, t_ivec *b, int elem_a, int elem_b, int quiet)
+size_t		rotate_analysis(t_analysis *p)
 {
-	if ((size_t)elem_a < a->length - elem_a
-			&& (size_t)elem_b < b->length - elem_b)
-		return (first_case(a, b, elem_a, elem_b, quiet));
-	else if ((size_t)elem_a >= a->length - elem_a
-			&& (size_t)elem_b >= b->length - elem_b)
-		return (second_case(a, b, elem_a, elem_b, quiet));
+	if ((size_t)p->a_i < p->a_v->length - p->a_i
+			&& (size_t)p->b_i < p->b_v->length - p->b_i)
+		return (first_case(p));
+	else if ((size_t)p->a_i >= p->a_v->length - p->a_i
+			&& (size_t)p->b_i >= p->b_v->length - p->b_i)
+		return (second_case(p));
 	else
-		return (smart_rotations(a, 'a', elem_a, quiet) +
-				smart_rotations(b, 'b', elem_b, quiet));
+		return (smart_rotations(p->a_v, 'a', p->a_i, p->s_flag) +
+				smart_rotations(p->b_v, 'b', p->b_i, p->s_flag));
 }
