@@ -32,6 +32,7 @@ static void	check_new_value(t_ivec **vec, char **temp, char **save_ptr)
 		value = ft_atoi_move(temp);
 		if (value > INT_MAX || value < INT_MIN || search_through(*vec, value))
 		{
+			ft_int_vec_del(vec);
 			ft_memdel((void**)vec);
 			ft_memdel((void**)save_ptr);
 			finish_him(INPUT_ERROR);
