@@ -81,5 +81,6 @@ size_t				calculate_and_place(t_ivec **a, t_ivec **b, int elem,
 		actions = cycle(analysis, elem);
 	if (!(push(*a, *b, flag, flag == ANALYSIS ? NULL : "pa")))
 		del_and_out(a, b);
+	ft_memdel((void**)&analysis);
 	return (actions + 1);
 }
