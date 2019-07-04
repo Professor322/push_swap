@@ -28,19 +28,6 @@ void	t_data_del(t_manager *checker, t_data **data)
 	ft_memdel((void**)data);
 }
 
-void	finish_him(int t_error)
-{
-	if (t_error == MALLOC_ERROR)
-	{
-		write(2, "Malloc error\n", 13);
-	}
-	else if (t_error == INPUT_ERROR)
-	{
-		write(2, "Input error\n", 12);
-	}
-	exit(-1);
-}
-
 int		del_manager(void *manager)
 {
 	t_data_del(*((t_manager**)manager), &(*((t_manager**)manager))->a);

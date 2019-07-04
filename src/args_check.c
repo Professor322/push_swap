@@ -62,29 +62,3 @@ void		check_integers(int from, int argc, char **argv)
 	}
 	ft_int_vec_del(&vec);
 }
-
-int			check_options(t_manager **manager, int argc, char **argv)
-{
-	int			i;
-	int			from;
-	const int	len = argc > 3 ? 3 : argc;
-
-	i = 0;
-	from = 1;
-	while (++i < len)
-		if (!ft_strcmp(argv[i], "-v") || !ft_strcmp(argv[i], "--visual"))
-		{
-			if ((*manager)->visual)
-				del_manager(manager);
-			(*manager)->visual = TRUE;
-			from++;
-		}
-		else if (!ft_strcmp(argv[i], "-d") || !ft_strcmp(argv[i], "--debug"))
-		{
-			if ((*manager)->debug)
-				del_manager(manager);
-			(*manager)->debug = TRUE;
-			from++;
-		}
-	return (from);
-}

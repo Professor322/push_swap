@@ -80,7 +80,7 @@ static void		visual_init(t_manager *manager)
 		manager->height = C_HEIGHT;
 		manager->mlx_ptr = mlx_init();
 		manager->win_ptr = mlx_new_window(manager->mlx_ptr, C_WIDTH, C_HEIGHT,
-				"checker");
+				"checker_folder");
 	}
 }
 
