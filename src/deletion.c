@@ -43,12 +43,12 @@ void	finish_him(int t_error)
 
 int		del_manager(void *manager)
 {
-	t_data_del(*((t_manager**)manager),&(*((t_manager**)manager))->a);
-	t_data_del(*((t_manager**)manager),&(*((t_manager**)manager))->b);
+	t_data_del(*((t_manager**)manager), &(*((t_manager**)manager))->a);
+	t_data_del(*((t_manager**)manager), &(*((t_manager**)manager))->b);
 	if ((*((t_manager**)manager))->visual)
 		mlx_destroy_window((*((t_manager**)manager))->mlx_ptr,
 			(*((t_manager**)manager))->win_ptr);
-	if((*((t_manager**)((void**)manager)))->error == MALLOC_ERROR)
+	if ((*((t_manager**)((void**)manager)))->error == MALLOC_ERROR)
 		write(2, "Malloc error\n", 13);
 	else if ((*((t_manager**)((void**)manager)))->error == INPUT_ERROR)
 		write(2, "Input error\n", 12);

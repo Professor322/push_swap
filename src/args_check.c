@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	search_through(t_ivec *vec, int value)
+int			search_through(t_ivec *vec, int value)
 {
 	int i;
 
@@ -23,7 +23,7 @@ int 	search_through(t_ivec *vec, int value)
 	return (0);
 }
 
-static void check_new_value(t_ivec **vec, char **temp, char **save_ptr)
+static void	check_new_value(t_ivec **vec, char **temp, char **save_ptr)
 {
 	long		value;
 
@@ -63,11 +63,11 @@ void		check_integers(int from, int argc, char **argv)
 	ft_int_vec_del(&vec);
 }
 
-int		check_options(t_manager **manager, int argc, char **argv)
+int			check_options(t_manager **manager, int argc, char **argv)
 {
-	int i;
-	int from;
-	const int len = argc > 3 ? 3 : argc;
+	int			i;
+	int			from;
+	const int	len = argc > 3 ? 3 : argc;
 
 	i = 0;
 	from = 1;

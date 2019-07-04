@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	find_min(t_ivec *stack, int flag)
+int		find_min(t_ivec *stack, int flag)
 {
 	int i;
 	int min;
@@ -32,7 +32,7 @@ int 	find_min(t_ivec *stack, int flag)
 	return (flag == VALUE ? min : index);
 }
 
-int 	find_max(t_ivec *stack, int flag)
+int		find_max(t_ivec *stack, int flag)
 {
 	int i;
 	int max;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	check_order(t_ivec *a, t_ivec *b, int flag)
+int		check_order(t_ivec *a, t_ivec *b, int flag)
 {
 	int i;
 
@@ -37,7 +37,7 @@ void	print_stack(t_ivec *a, t_ivec *b)
 	ft_printf("\n");
 	i = -1;
 	ft_printf("\n{RED}stack b{GREY}\n");
-	while((size_t)++i < b->length)
+	while ((size_t)++i < b->length)
 		ft_printf("|%d|", b->data[i]);
 	ft_printf("\n________________________________\n");
 	ft_printf("\n");

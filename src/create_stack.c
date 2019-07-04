@@ -12,17 +12,17 @@
 
 #include "push_swap.h"
 
-t_ivec *create_stack(int from, int argc, char **argv)
+t_ivec	*create_stack(int from, int argc, char **argv)
 {
 	t_ivec	*stack;
 	char	*temp;
-	char 	*save_ptr;
+	char	*save_ptr;
 
 	if (!(stack = ft_int_vec_init()))
 		return (NULL);
 	while (from < argc)
 	{
-		if(!(temp = ft_strtrim(argv[from])))
+		if (!(temp = ft_strtrim(argv[from])))
 		{
 			ft_int_vec_del(&stack);
 			return (NULL);
@@ -36,7 +36,7 @@ t_ivec *create_stack(int from, int argc, char **argv)
 				return (NULL);
 			}
 		ft_memdel((void**)&save_ptr);
-			from++;
+		from++;
 	}
 	return (stack);
 }

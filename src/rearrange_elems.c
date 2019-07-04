@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int 	advanced_find_max(t_ivec *vec, t_ivec *index_vec)
+static int		advanced_find_max(t_ivec *vec, t_ivec *index_vec)
 {
 	int i;
 	int max;
@@ -24,7 +24,7 @@ static int 	advanced_find_max(t_ivec *vec, t_ivec *index_vec)
 		{
 			max = vec->data[i];
 			max_index = i;
-			break;
+			break ;
 		}
 	i = -1;
 	while ((size_t)++i < vec->length)
@@ -38,8 +38,8 @@ static int 	advanced_find_max(t_ivec *vec, t_ivec *index_vec)
 
 static t_ivec	*copy_vec(t_ivec *stack)
 {
-	t_ivec *vec;
-	int i;
+	t_ivec	*vec;
+	int		i;
 
 	if (!(vec = ft_int_vec_init()))
 		return (NULL);
@@ -53,12 +53,11 @@ static t_ivec	*copy_vec(t_ivec *stack)
 	return (vec);
 }
 
-t_ivec	*rearrange_elems(t_ivec *stack)
+t_ivec			*rearrange_elems(t_ivec *stack, size_t length)
 {
-	t_ivec *vec;
-	t_ivec *index_vec;
-	int index;
-	int i;
+	t_ivec		*vec;
+	t_ivec		*index_vec;
+	int			index;
 
 	if (!(vec = copy_vec(stack)))
 		return (NULL);
@@ -67,11 +66,10 @@ t_ivec	*rearrange_elems(t_ivec *stack)
 		ft_int_vec_del(&vec);
 		return (NULL);
 	}
-	i = vec->length;
 	while (vec->length != index_vec->length)
 	{
 		index = advanced_find_max(vec, index_vec);
-		vec->data[index] = i--;
+		vec->data[index] = length--;
 		if (!ft_int_vec_pushback(index_vec, index))
 		{
 			ft_int_vec_del(&vec);

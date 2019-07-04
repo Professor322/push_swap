@@ -10,13 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "push_swap.h"
 
-static void 	sort_the_remainder(t_ivec *a)
+static void	sort_the_remainder(t_ivec *a)
 {
 	const int	min = find_min(a, INDEX);
-	const int 	max = find_max(a, INDEX);
+	const int	max = find_max(a, INDEX);
 
 	if (max == 0)
 		rotate_up(a, "ra");
@@ -27,7 +26,7 @@ static void 	sort_the_remainder(t_ivec *a)
 		swap(a, "sa");
 }
 
-static void		small_stack_sort(t_ivec *a)
+static void	small_stack_sort(t_ivec *a)
 {
 	if (a->length == 2)
 	{
@@ -38,7 +37,7 @@ static void		small_stack_sort(t_ivec *a)
 		sort_the_remainder(a);
 }
 
-void	sort(t_ivec **a, t_ivec **b)
+void		sort(t_ivec **a, t_ivec **b)
 {
 	if ((*a)->length <= 3)
 		small_stack_sort(*a);
@@ -47,7 +46,7 @@ void	sort(t_ivec **a, t_ivec **b)
 		while ((*a)->length > 3)
 		{
 			if (check_order(*a, *b, A_ONLY))
-				break;
+				break ;
 			push(*b, *a, DO_OP, "pb");
 		}
 		if ((*a)->length == 3)

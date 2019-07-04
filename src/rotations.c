@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	smart_rotations(t_ivec *stack, char c, int elem, int output_flag)
+int		smart_rotations(t_ivec *stack, char c, int elem, int output_flag)
 {
 	size_t i;
 

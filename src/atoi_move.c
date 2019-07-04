@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int  dec_check(char c)
+static int	dec_check(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (c - '0');
@@ -21,7 +21,7 @@ static int  dec_check(char c)
 	return (-1);
 }
 
-long	ft_atoi_move(char **src)
+long		ft_atoi_move(char **src)
 {
 	long	result;
 	int		sign;

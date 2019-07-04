@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*             s                                           :::      ::::::::   */
+/*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlegros <marvin@42.fr>                     +#+  +:+       +#+        */
@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	push(t_ivec *dst, t_ivec *src, int flag, char *action)
+int		push(t_ivec *dst, t_ivec *src, int flag, char *action)
 {
 	if (!src || !dst)
 		return (-1);
@@ -26,7 +26,7 @@ int 	push(t_ivec *dst, t_ivec *src, int flag, char *action)
 	return (1);
 }
 
-int 	swap(t_ivec *stack, char *action)
+int		swap(t_ivec *stack, char *action)
 {
 	int temp;
 
@@ -42,9 +42,9 @@ int 	swap(t_ivec *stack, char *action)
 	return (1);
 }
 
-int 	rotate_up(t_ivec *stack, char *action)
+int		rotate_up(t_ivec *stack, char *action)
 {
-	int 	temp;
+	int	temp;
 
 	if (!stack)
 		return (0);
@@ -58,9 +58,9 @@ int 	rotate_up(t_ivec *stack, char *action)
 	return (1);
 }
 
-int 	rotate_down(t_ivec *stack, char *action)
+int		rotate_down(t_ivec *stack, char *action)
 {
-	int 	temp;
+	int	temp;
 
 	if (!stack)
 		return (0);

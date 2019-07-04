@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-static int 	a_vec(t_manager *manager, t_data **new, int argc, char **argv)
+static int		a_vec(t_manager *manager, t_data **new, int argc, char **argv)
 {
 	(*new)->stack = 'a';
 	(*new)->img_vec = NULL;
-	if (!((*new)->val_vec = create_stack(manager->start,argc, argv)))
+	if (!((*new)->val_vec = create_stack(manager->start, argc, argv)))
 	{
 		ft_memdel((void**)new);
 		return (0);
@@ -31,7 +31,7 @@ static int 	a_vec(t_manager *manager, t_data **new, int argc, char **argv)
 	return (1);
 }
 
-static int 	b_vec(t_manager *manager, t_data **new)
+static int		b_vec(t_manager *manager, t_data **new)
 {
 	(*new)->stack = 'b';
 	(*new)->img_vec = NULL;
@@ -50,7 +50,8 @@ static int 	b_vec(t_manager *manager, t_data **new)
 	return (1);
 }
 
-static t_data	*t_data_init(t_manager *manager, int argc, char **argv, int flag)
+static t_data	*t_data_init(t_manager *manager, int argc, char **argv,
+		int flag)
 {
 	t_data *new;
 
@@ -69,7 +70,7 @@ static t_data	*t_data_init(t_manager *manager, int argc, char **argv, int flag)
 	return (new);
 }
 
-static void	visual_init(t_manager *manager)
+static void		visual_init(t_manager *manager)
 {
 	if (manager->visual)
 	{
@@ -83,7 +84,7 @@ static void	visual_init(t_manager *manager)
 	}
 }
 
-t_manager	*manager_init(t_manager *manager, int argc, char **argv)
+t_manager		*manager_init(t_manager *manager, int argc, char **argv)
 {
 	visual_init(manager);
 	if (!(manager->a = t_data_init(manager, argc, argv, A_ONLY)))

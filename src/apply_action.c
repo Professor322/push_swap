@@ -12,31 +12,31 @@
 
 #include "push_swap.h"
 
-void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_manager *checker)
+void	push_on_stack(t_data *a, t_data *b, int stack_to_push,
+		t_manager **checker)
 {
 	if (!a || !b)
 		return ;
 	if (stack_to_push == PUSH_A)
 	{
-		if(!vis_push(a, b, NULL, checker))
+		if (!vis_push(a, b, NULL, *checker))
 		{
-			ft_int_vec_del(&a->val_vec);
-			ft_int_vec_del(&b->val_vec);
-			finish_him(MALLOC_ERROR);
+			(*checker)->error = MALLOC_ERROR;
+			del_manager(checker);
 		}
 	}
 	else if (stack_to_push == PUSH_B)
 	{
-		if (!vis_push(b, a, NULL, checker))
+		if (!vis_push(b, a, NULL, *checker))
 		{
-			ft_int_vec_del(&a->val_vec);
-			ft_int_vec_del(&b->val_vec);
-			finish_him(MALLOC_ERROR);
+			(*checker)->error = MALLOC_ERROR;
+			del_manager(checker);
 		}
 	}
 }
 
-void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_manager *checker)
+void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap,
+		t_manager *checker)
 {
 	if (stack_to_swap == SWAP_A)
 		vis_swap(a, NULL, checker);
@@ -49,9 +49,9 @@ void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_manager *checke
 	}
 }
 
-void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate, t_manager *checker)
+void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate,
+		t_manager *checker)
 {
-
 	if (stack_to_rotate == ROTATE_A_UP)
 		vis_rotate_up(a, NULL, checker);
 	else if (stack_to_rotate == ROTATE_B_UP)

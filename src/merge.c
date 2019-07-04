@@ -12,7 +12,14 @@
 
 #include "push_swap.h"
 
-static int find_elem(t_ivec **a, t_ivec **b, int min, int elem_to_place)
+static void	fill_values(int *min, int actions_num, int *elem_to_place,
+		int val)
+{
+	(*min) = actions_num;
+	(*elem_to_place) = val;
+}
+
+static int	find_elem(t_ivec **a, t_ivec **b, int min, int elem_to_place)
 {
 	int i;
 	int j;
@@ -21,11 +28,9 @@ static int find_elem(t_ivec **a, t_ivec **b, int min, int elem_to_place)
 	i = 1;
 	while ((size_t)i < (*b)->length && i < min - 1)
 	{
-		if ((actions_num = calculate_and_place(a, b, (*b)->data[i], ANALYSIS)) < min)
-		{
-			min = actions_num;
-			elem_to_place = (*b)->data[i];
-		}
+		if ((actions_num =
+				calculate_and_place(a, b, (*b)->data[i], ANALYSIS)) < min)
+			fill_values(&min, actions_num, &elem_to_place, (*b)->data[i]);
 		i++;
 	}
 	if ((*b)->length > (size_t)min)
@@ -33,19 +38,17 @@ static int find_elem(t_ivec **a, t_ivec **b, int min, int elem_to_place)
 		i = (*b)->length;
 		j = -1;
 		while (--i != 0 && ++j < min - 1)
-			if ((actions_num = calculate_and_place(a, b, (*b)->data[i], ANALYSIS)) < min)
-			{
-				min = actions_num;
-				elem_to_place = (*b)->data[i];
-			}
+			if ((actions_num =
+					calculate_and_place(a, b, (*b)->data[i], ANALYSIS)) < min)
+				fill_values(&min, actions_num, &elem_to_place, (*b)->data[i]);
 	}
 	return (elem_to_place);
 }
 
-void	merge(t_ivec **a, t_ivec **b)
+void		merge(t_ivec **a, t_ivec **b)
 {
-	int 	elem_to_place;
-	int min;
+	int	elem_to_place;
+	int	min;
 
 	while ((*b)->length)
 	{

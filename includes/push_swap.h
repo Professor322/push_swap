@@ -53,6 +53,7 @@ typedef struct	s_img
 {
 	void	*img;
 	void	*mlx_ptr;
+	int 	*data;
 	int 	i_width;
 	int 	i_height;
 	int		bits_per_pixel;
@@ -129,13 +130,13 @@ t_ivec	*create_stack(int from, int argc, char **argv);
 
 void	rotate_elems(t_data *a, t_data *b, int stack_to_rotate, t_manager *checker);
 void	swap_stack_elems(t_data *a, t_data *b, int stack_to_swap, t_manager *checker);
-void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_manager *checker);
+void	push_on_stack(t_data *a, t_data *b, int stack_to_push, t_manager **checker);
 
 /**
  * 	apply and debug
  */
 void	swaps(t_data *a, t_data *b, int command_num, t_manager *checker);
-void	pushes(t_data *a, t_data *b, int command_num, t_manager *checker);
+void	pushes(t_data *a, t_data *b, int command_num, t_manager **checker);
 void	rotations_up(t_data *a, t_data *b, int command_num, t_manager *checker);
 void	rotations_down(t_data *a, t_data *b, int command_num, t_manager *checker);
 
@@ -156,7 +157,7 @@ int 	search_through(t_ivec *vec, int value);
  * visualisation
  */
 void	*create_elem(t_manager *param, int length,int value);
-t_ivec	*rearrange_elems(t_ivec *stack);
+t_ivec	*rearrange_elems(t_ivec *stack, size_t length);
 void	del(void **elem);
 t_vec	*vis_vec(t_manager *param, t_ivec *stack);
 void	display_stack(t_manager *param, t_vec *vec, char stack);
