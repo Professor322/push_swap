@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_ivec *a;
 	t_ivec *b;
@@ -30,6 +30,5 @@ int 	main(int argc, char **argv)
 		ft_int_vec_del(&a);
 		ft_int_vec_del(&b);
 	}
-
 	return (0);
 }

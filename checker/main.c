@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int 	key_press(int keycode, void *param)
+int			key_press(int keycode, void *param)
 {
 	static int counter = 0;
 
@@ -33,9 +33,9 @@ int 	key_press(int keycode, void *param)
 	return (0);
 }
 
-void	hooks(t_manager **checker)
+void		hooks(t_manager **checker)
 {
-	mlx_hook((*checker)->win_ptr,2,0, key_press,checker);
+	mlx_hook((*checker)->win_ptr, 2, 0, key_press, checker);
 	mlx_hook((*checker)->win_ptr, 17, 0, del_manager, checker);
 	mlx_loop_hook((*checker)->mlx_ptr, visualize, checker);
 	mlx_loop((*checker)->mlx_ptr);
@@ -58,10 +58,9 @@ t_manager	*init(int argc, char **argv)
 	return (checker);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_manager	*checker;
-
 
 	if (argc <= 1)
 		return (0);
